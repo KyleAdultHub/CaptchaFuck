@@ -21,15 +21,15 @@ ModelConfig = {
         "max_steps": 200000,  # 训练到多少步保存并停止
         "conv_num": 3
     },
-    "wenshu_prob": {
+    "wenshu_upgrade": {
         'npi': 5,  # 一张图片的元素数量
         'learn_ratio': 0.00001,  # 学习率
         'width': 75,  # 图片的宽
         'height': 30,  # 图片的高
         "choice": ["digit", "lower"],  # 图片的选择集合
-        "name": "wenshu_prob",  # 该配置名称
-        "keep_prob": 0.75,  # prob参数
-        "max_steps": 300000,  # 训练到多少步保存并停止
+        "name": "wenshu_upgrade",  # 该配置名称
+        "keep_prob": 1.0,  # prob参数
+        "max_steps": 120000,  # 训练到多少步保存并停止
         "conv_num": 3
     }
 }

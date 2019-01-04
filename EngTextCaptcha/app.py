@@ -84,6 +84,7 @@ def captcha_crack():
 def save_captcha():
     user = request.args.get('user')
     img_text = request.args.get('text')
+    test_data = request.args.get('test')
     if not ModelConfig.get(user):
         logger.logger.info('/captcha/save: can not find user of {}.'.format(user))
         return jsonify(Msg.no_user())
@@ -97,7 +98,10 @@ def save_captcha():
         logger.logger.info('/captcha/save: receive wrong data of image, the bytes data can not trans to Image obj.'.format(user))
         return jsonify(Msg.invalid_img())
     try:
-        img_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "databases", user, "img_train")
+        if not test_data:
+            img_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "databases", user, "img_train")
+        else:
+            img_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "databases", user, "img_test")
         img_file_name = os.path.join(img_dir, img_text + "_" + str(uuid4()) + ".png")
         with open(img_file_name, 'wb') as f:
             f.write(image)
